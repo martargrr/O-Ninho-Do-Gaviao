@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+    <title>O Ninho do Gavião</title>
+    <link rel="icon" href="imagens\logotipo.png" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=logout" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
+    <!--para as redes sociais-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }        
+        .row-central{
+            align-items: center;
+        }
+        /*acrescentei porque o cabeçalho fica fixo com o scroll e partes do body podiam ficar tapados*/
+        body {
+            padding-top: 150px; /* ajusta consoante a altura do header */
+        }
+        
+        .img-hero{
+        height: 300px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+        /* Estilo geral do header */
+        .cabecalho {
+            background-color: #4E342E; /* tom madeira */
+            color:#FFF3E0;            /* tom creme */
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            position: fixed;
+            /*para manter o cabeçalho fixo enquanto faço scroll*/
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Títulos e texto central */
+        .cabecalho h1 {
+            font-size: 2rem;
+            margin-bottom: 0;
+        }
+
+        .cabecalho h6 {
+            font-size: 1rem;
+            color: #D84315; /* tom fogo */
+        }
+
+        /* Estilo das imagens */
+        .cabecalho img {
+            max-height: 50px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .localizacao{
+            margin: 0 !important;
+        }
+        .localizacao img{
+            opacity: 0.5;
+        }
+        /* Link da área reservada 
+        .localizacao p {
+            font-size: 0.8rem;
+            color: #FFF3E0;
+            margin-top: 5px;
+            border-radius: 10px;
+        }
+        */
+
+        /* Navegação do menu */
+        .cabecalho nav .btn {
+            font-weight: 600;
+            color: #FFF3E0;
+            border-radius: 20px;
+            transition: 0.3s;
+            padding: 5px 15px;
+            background-color: #D84315;
+            border: none;
+        }
+
+        .cabecalho nav .btn:hover {
+            background-color: #BF360C;
+            transform: scale(1.05);
+        }
+
+        /*para o java-script de redução do cabeçalho quando faço scroll*/
+        .cabecalho.shrink {
+            padding: 2px 0;
+        }
+        
+        .cabecalho.shrink h1 {
+            font-size: 1.2rem;
+        }
+        
+        .cabecalho.shrink img {
+            max-height: 25px;
+        }
+        /*termina aqui*/
+
+        .linha_separador {
+            width: 100%;
+            border-top: 5px solid #D84315;
+            margin: 0;
+        }
+        /*Banner*/
+        .banner {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .img-banner {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .texto-banner {
+            position: absolute;
+            top: 70%; /* ligeiramente abaixo do meio */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FFF3E0;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            text-align: center;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.3); /* fundo semi-transparente opcional */
+            border-radius: 10px;
+        }
+
+        .secao-historia {
+            
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-family: 'Playfair Display', serif;
+            color: #4E342E;
+        }
+        
+        .secao-historia h2 {
+            color: #D84315;
+            font-weight: 600;
+        }
+        
+        .text-justify {
+            text-align: justify;
+        }
+        .secao-historia img {
+            max-height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .zoom-hover {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .zoom-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        figcaption {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-style: italic;
+        }        
+    .form-container{
+        display: flex;
+        height: 100vh;
+    }
+    .left {
+        flex: 4;
+        background-size: cover;
+        background-position: center;
+        
+    }
+
+    .right {
+        flex: 8;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h2 {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 30px;
+    }
+
+    form label {
+        display: block;
+        margin: 15px 0 5px;
+    }
+
+    form input,
+    form textarea {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #000;
+        padding: 8px 4px;
+        font-size: 16px;
+        background: transparent;
+    }
+
+    form textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    button {
+        margin-top: 25px;
+        background-color: #000;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+    .rodape {
+    background-color: #1a1a1a; /* quase preto */
+    color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 0.9rem;
+}
+
+.rodape a {
+    color: #f0f0f0;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.rodape a:hover {
+    text-decoration: underline;
+}
+
+.rodape .linha-cima,
+.rodape .linha-meio,
+.rodape .linha-baixo {
+    margin: 8px 0;
+}
+
+.linha-meio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.icones-sociais a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #333; /* ou a cor que desejar */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.icones-sociais a:hover {
+    color: #007bff; /* cor ao passar o rato, opcional */
+}
+    
+
+.autora-section {
+            background-color: #f9f5ef; /* creme muito claro */
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .autora-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fffaf4;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 80%;           /* ocupa mais largura */
+            max-width: 900px;     /* mas com limite para não exagerar */
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .autora-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .autora-info h2 {
+            font-size: 2em;
+            color: #a27070;
+            margin-bottom: 10px;
+        }
+        
+        .autora-info p {
+            color: #444;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        
+        .orcamento-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .orcamento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    background-color: #f9f9f9; 
+}
+
+.orcamento-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.orcamento-info h2 {
+    margin-bottom: 20px;
+}
+
+.orcamento-info ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.orcamento-info ul li {
+    padding: 5px 0;
+    font-size: 16px;
+}
+</style>
+
+    </head>
+<body>
+    
+    <header class="cabecalho container-fluid">
+        <div class="row align-items-center py-3">
+            <div class="col-sm-4 col-md-2 text-center">
+                <a href="#">
+                    <img src="./imagens/logotipo.png" class="img-fluid" alt="Logotipo">
+                </a>               
+            </div>
+
+            <div class="col-sm-4 col-md-8 text-center">
+                <h1 class="mb-0">O Ninho do Gavião</h1>
+                <hr class="my-1">
+                <h6><i>Carne na Brasa</i></h6>
+            </div>    
+            
+        <nav class="navbar navbar-expand-md justify-content-center mt-3">
+            <div class="btn-group" role="group">
+                <a href="#historia" class="btn btn-success btn-sm mx-1">História</a>
+                <a href="#menu" class="btn btn-success btn-sm mx-1">Menu</a>
+                <a href="#redessociais" class="btn btn-success btn-sm mx-1">Redes Sociais</a>
+                <a href="#contatos" class="btn btn-success btn-sm mx-1">Contactos</a>
+            </div>
+        </nav>
+    </header>
+    <div class="banner position-relative">
+        <img src="./imagens/espaco_restaurante.jpg" alt="Banner" class="img-banner">
+        <div class="texto-banner">SABORES COM ALMA</div>
+    </div>
+    
+    <hr class="linha_separador">
+
+    <div class="seccoes_secundarias" id="sobre">
+        <div class="row row-central">
+            <div class="col-sm-6 col-md-6 col-lg-6 text-center">
+                <img class="img-hero" src="./imagens/javali.jpg">  
+            </div>
+            <div class="div-dir col-sm-6 col-md-6 col-lg-6 text-center">
+                <p class="texto_centrado_vertical"style="font-size: 30px;">EMBARQUE NO MUNDO DOS SABORES GRELHADOS</p>
+                <h6><p>Fornecemos qualidade, excelência e sabor. Lembrando sempre uma boa relação qualidade preço.</p></h6>
+            </div>
+        </div>
+    </div>
+    <div class="seccoes_secundarias" id="equipa">
+        <div class ="row row-central">
+            <div class="col-sm-6 col-md-6 col-lg-6 text-center">
+                <img class="img-hero" src="./imagens/menu.jpg">
+            </div>                    
+            <div class="col-sm-6 col-md-6 col-lg-6 text-center">
+                <p class="texto_centrado_vertical" style="font-size: 30px;">AS ESTRELAS DA CASA</p>
+                <h6><p>Um menu cheio de requinte. Conheça a essência dos pratos sevidos no nosso restaurante</p></h6> 
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container my-5">
+        <h2 class="text-center mb-4" style="color:#D84315;">O Nosso Menu</h2>
+        <p class="text-center mb-4">Explore o nosso menu</p>
+        <div class="row">
+            <!-- Primeira linha -->
+            <div class="col-md-4 mb-4 text-center">
+                <a href="#menu">
+                    <img src="imagens/entradas3.jpg" class="img-fluid rounded shadow zoom-hover" alt="Foto de uma entrada">
+                </a>
+                <figcaption class="mt-2 text-muted">Entradas</figcaption>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <a href="#menu">
+                    <img src="imagens/vitela.jpg" class="img-fluid rounded shadow zoom-hover" alt="Foto de carne grelhada">
+                </a>
+                <figcaption class="mt-2 text-muted">Carnes</figcaption>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <a href="#menu">
+                    <img src="imagens/acompanhamentos2.jpg" class="img-fluid rounded shadow zoom-hover" alt="Foto de um acompanhamento">
+                </a>
+                <figcaption class="mt-2 text-muted">Acompanhamentos</figcaption>
+            </div>
+    
+            <!-- Segunda linha -->
+            <div class="col-md-4 mb-4 text-center">
+                <a href="#menu">
+                    <img src="imagens/saladas1.jpg" class="img-fluid rounded shadow zoom-hover" alt="Foto de uma salada">
+                </a>
+                <figcaption class="mt-2 text-muted">Saladas</figcaption>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <a href="#menu">
+                    <img src="imagens/vinhos1.jpg" class="img-fluid rounded shadow zoom-hover" alt="Foto de adega de vinho">
+                </a>
+                <figcaption class="mt-2 text-muted">Vinho</figcaption>
+            </div>
+            <div class="col-md-4 mb-4 text-center">
+                <a href="#menu">
+                    <img src="imagens/sobremesas1.jpg" class="img-fluid rounded shadow zoom-hover" alt="Foto de uma sobremesa">
+                </a>
+                <figcaption class="mt-2 text-muted">Sobremesas</figcaption>
+            </div>
+        </div>
+    </div>
+
+    <div id="historia" class="secao-historia container my-5">
+        <h2 class="text-center mb-4">A nossa história</h2>
+        <div class="row">
+            <div class="col-md-6 text-justify">
+                <p>
+                    O Ninho do Gavião nasceu em 2010, no coração de uma pequena freguesia do interior, com a ambição simples de partilhar sabores autênticos com a comunidade local. Fundado por uma família apaixonada pela arte da grelha e pelo convívio à volta da mesa, o restaurante iniciou a sua jornada com grelhados no carvão e pratos tradicionais, servidos com generosidade e um sorriso genuíno.
+                </p>
+                <p>
+                    O nome surgiu da paisagem que o rodeia — um miradouro natural onde os gaviões planam livremente, observando tudo de cima. E foi com essa visão de futuro que, pouco a pouco, o pequeno espaço foi conquistando paladares e corações, tornando-se rapidamente uma referência na zona.
+                </p>
+                <p>
+                    Com o crescimento constante da procura, O Ninho do Gavião abriu um novo espaço com serviço de take-away, pensado para as famílias que queriam levar para casa o sabor de sempre.
+                </p>
+            </div>
+            <div class="col-md-6 text-justify">
+                <p>
+                    Pouco depois, inaugurou-se uma unidade moderna na zona urbana, com serviço à mesa, ambiente acolhedor e uma ementa renovada que honra a tradição, mas com um toque contemporâneo.
+                </p>
+                <p>
+                    Ao longo dos anos, a marca cresceu com os pés bem assentes na terra e os olhos postos no horizonte. Cada novo espaço abriu portas a novos empregos, revitalizou locais esquecidos e trouxe à mesa a mesma essência que fez nascer o primeiro: qualidade, simplicidade e sabor.
+                </p>
+                <p>
+                    Hoje, O Ninho do Gavião conta com vários espaços que unem tradição, inovação e, acima de tudo, o calor de quem serve com paixão. Um restaurante que continua a voar alto, guiado pelo lema: <strong>“Sabores com Alma.”</strong>
+                </p>
+            </div>
+        </div>
+        <div class="row text-center mt-4">
+            <div class="col-md-4 mb-3 text-center">
+                <figure>
+                    <img src="imagens/historia2.jpg" class="img-fluid rounded shadow " alt="Fotografia da chef de cozinha">
+                    <figcaption class="mt-2 text-muted">A nossa chef</figcaption>
+                </figure>
+            </div>
+            <div class="col-md-4 mb-3">
+                <figure>
+                <img src="imagens/historia1.jpg" class="img-fluid rounded shadow" alt="Imagem de uma garrafa de vinho e dois copos">
+                <figcaption class="mt-2 text-muted">Chill out</figcaption>
+            </figure>
+            </div>
+            <div class="col-md-4 mb-3">
+                <figure>
+                    <img src="imagens/historia3.jpg" class="img-fluid rounded shadow" alt="Imagem de madeira a arder">
+                    <figcaption class="mt-2 text-muted">Always on fire</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="menu">
+        <h2 class="text-center mb-4" style="color:#D84315;" >Menu</h2>
+        <div class="container-fluid my-5">
+            <div class="row text-center align-items-stretch">
+                <!-- COLUNA 1: CARROSSEL -->
+                <div class="col-md-3 p-2">
+                    <div id="carouselFotos" class="carousel slide h-100" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner h-100">
+                            <div class="carousel-item active h-100">
+                                <img src="imagens/veado.jpg" class="d-block w-100 h-100 object-fit-cover rounded" alt="Carne grelhada de veado">
+                            </div>
+                            <div class="carousel-item h-100">
+                                <img src="imagens/borrego.jpg" class="d-block w-100 h-100 object-fit-cover rounded" alt="Carne grelada de borrego">
+                            </div>
+                            <div class="carousel-item h-100">
+                                <img src="imagens/costeletas.jpg" class="d-block w-100 h-100 object-fit-cover rounded" alt="Entrecosto grelhado">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- COLUNA 2 -->
+                <div class="col-md-3 p-2 d-flex flex-column justify-content-start border rounded">
+                    <h5 class="mb-3">Pratos</h5>
+                        <p>Picanha de Angus</p>
+                        <p>Diamente Ibérico</p>
+                        <p>Costeletas Dry Aged</p>
+                        <p>Solomilho Ibérico de Porco Preto</p>
+                        <p>Fraldinha de Porco Ibérico</p>
+                </div>
+                <!-- COLUNA 3 -->
+                <div class="col-md-3 p-2 d-flex flex-column justify-content-start border rounded">
+                    <h5 class="mb-3">Acompanhamentos</h5>
+                        <p>Arroz Basmati com Feijão Preto</p>
+                        <p>Legumes Cozidos</p>
+                        <p>Esparregado de Couve Galega e Esparregado</p>
+                        <p>Batata Frita</p>
+                        <p>Batata a Murro</p>
+                </div>
+
+                <!-- COLUNA 4 -->
+                <div class="col-md-3 p-2 d-flex flex-column justify-content-start border rounded">
+                    <h5 class="mb-3">Sobremesas</h5>
+                        <p>Baba de Camelo</p>
+                        <p>Salada de Fruta</p>
+                        <p>Mousse de Ananás</p>
+                        <p>Serradura</p>
+                        <p>Fruta da Época</p>
+                </div>
+            </div>
+        </div>
+    </div>    
+    
+    <br>
+
+    <div id="contatos">
+        <!-- Conteúdo Responsivo -->
+        <div class="container mt-4">
+            <div class="row text-center align-items-center g-4">
+                
+                <!-- Coluna 1: Google Maps -->
+                <div class="col-md-4">
+                    <h3>Como chegar ao "O Ninho do Gavião"</h3>
+                    <p>Rua Castilho nº 6, 6000-600 Castelo Branco</p>
+                    <a href="https://www.google.com/maps?q=Rua+Castilho+6,+6000-600+Castelo+Branco" target="_blank" style="font-size: 2em; color: #DB4437;">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </a>
+                </div>
+
+                <!-- Coluna 2: Imagem -->
+                <div class="col-md-4">
+                    <img src="imagens/equipa3.jpg" alt="Imagem" class="img-fluid rounded shadow">
+                </div>
+
+                <!-- Coluna 3: Link para formulário -->
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <a href="#opiniao" class="btn btn-dark fw-bold">Deixe a sua opinião</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="opiniao" class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h3 class="mb-3">Deixe a sua opinião</h3>
+            <p>Visite o nosso restaurante na Rua Castilho nº 6, 6000-600 Castelo Branco. Contacte-nos por telefone: 239547856 ou envie-nos uma mensagem:</p>
+            
+            <form>
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="assunto" class="form-label">Assunto</label>
+                    <input type="text" class="form-control" id="assunto" name="assunto">
+                </div>
+
+                <div class="mb-3">
+                    <label for="mensagem" class="form-label">Mensagem</label>
+                    <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-dark">Submeter</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <br>
+
+    <hr class="linha_separador">
+
+    <section class="autora-section">
+        <div class="autora-card">
+            <img src="imagens/equipa1.png" width="200" height="150" alt="Descrição da imagem"class="autora-foto" >
+            <div class="autora-info">
+                <h2>Marta Rodrigues</h2>
+                <p>Estudante de Engenharia Informática, apaixonada por tecnologia e design de interfaces. Este projeto foi desenvolvido no âmbito da unidade curricular de Interface Pessoa-Máquina, com foco na experiência do utilizador e acessibilidade.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <hr class="linha_separador">
+
+    <section class="orcamento">
+    <div class="orcamento-card">
+        <div class="orcamento-info">
+            <h2>Proposta de Orçamento</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Desenvolvimento do site</td>
+                        <td>600€</td>
+                    </tr>
+                    <tr>
+                        <td>Design responsivo e acessível</td>
+                        <td>150€</td>
+                    </tr>
+                    <tr>
+                        <td>Manutenção e Acompanhamento</td>
+                        <td>100€</td>
+                    </tr>
+                    <tr>
+                        <td>Hospedagem e domínio (1 ano)</td>
+                        <td>50€</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <th>900€</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+    <hr class="linha_separador">
+
+
+    <footer class="rodape">
+    <div class="linha-cima">
+        <p>Restaurante O Ninho do Gavião</p>
+    </div>
+    <div id="redessociais"></div>
+        <div class="linha-meio">
+            <div class="icones-sociais">
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://wa.me/351912345678" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                <a href="https://youtu.be/xPPLbEFbCAo" target="_blank" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="linha-baixo">
+        <p>© O Ninho do Gavião 2025 |
+            <a href="#">Livro de Reclamações</a> |
+            <a href="#">Política de Privacidade</a> |
+            <a href="#">Termos e Condições</a> |
+            Projeto financiado pela UE
+        </p>
+    </div>
+</footer>
+
+
+
+    <script>  <!--antes do body é o melhor para colocar o js-->
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.cabecalho');
+            if (window.scrollY > 50) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+            });
+    </script>
+     
+</body>
+</html>
+
+
+
